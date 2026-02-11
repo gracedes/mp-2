@@ -1,11 +1,11 @@
 export interface Character {
     id: string;
     name: string;
-    nameJP: string;
+    nameJP: { unicode: string, latin: string };
     gender: string;
     //alias: array;
     description: string;
-    birthday: string;
+    birthday: string;           // TODO: look into optional values
     firstAppear: string;
     lastAppear: string;
 }

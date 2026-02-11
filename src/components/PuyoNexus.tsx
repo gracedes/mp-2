@@ -28,7 +28,7 @@ export default function PuyoNexus(props : { data:Character[] } ){
             {
                 props.data.map((char: Character) =>
                     <SingleCharDiv key={char.id} status={char.gender}>
-                        <h1>{char.name}</h1>
+                        <h1>{char.name} ({char.nameJP.unicode})</h1>
                         <p>Gender: {char.gender}</p>
                         <p>Birthday: {char.birthday}</p>
                         <p>About: {char.description}</p>
