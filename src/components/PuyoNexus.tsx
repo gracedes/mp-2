@@ -1,48 +1,38 @@
  // TODO ideas
  //   - drop-down to filter by first/last game using react hooks
  //   - look into custom hook for array manipulation
+ //   - add ability to search
 
-import styled from "styled-components";
-import type {Character} from "../interfaces/Characters.ts";
+import {useEffect, useState} from "react";
+ import type {Character} from "../interfaces/Characters.ts";
 
-const AllCharsDiv=styled.div`
-    display: flex;
-    flex-flow: row wrap;    
-    justify-content: space-evenly;
-    background-color: bisque;
-`;
+export default function PuyoNexusContent(){
+    const [characters, setCharacters] = useState<Character[]>([])
 
-const SingleCharDiv=styled.div<{status: string}>`
-    display: flex;
-    flex-direction: column;   
-    justify-content: center;
-    max-width: 30%;
-    padding: 2%;
-    margin: 1%;
-    background-color: ${(props)=>(props.status === "Female" ? 'lightpink' : 'lightblue')};
-    color: ${(props) => (props.status !== "Female" ? 'black' : 'white')};
-    border: 3px darkred solid;
-    border-radius: 15px;
-    font: italic small-caps bold calc(2px + 1vw) Papyrus, fantasy;
-    text-align: center;
-`;
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch("https://deltadex7-puyodb-api-deno-9thxn4rqxy9g.deno.dev/api/v1/characters");
+            const rawData = await res.json();
+            setCharacters(rawData.data);
+        }
+        fetchData().then(()=>console.log("okay")).catch((e) => console.log(e));
+    }, [characters.length]);
 
-export default function PuyoNexus(props : { data:Character[] } ){
     return (
-        <AllCharsDiv >
+        <div>
             {
-                props.data.map((char: Character) =>
-                    <SingleCharDiv key={char.id} status={char.gender}>
+                characters.map((char: Character) =>
+                    <div>
                         <h1>{char.name}</h1>
                         <h2>({char.nameJP.unicode})</h2>
                         <p>Gender: {char.gender}</p>
                         <p>Birthday: {char.birthday}</p>
                         <p>First Appearance: {char.firstAppear}</p>
                         <p>Last Appearance: {char.lastAppear}</p>
-                    </SingleCharDiv>
+                    </div>
                 )
             }
-        </AllCharsDiv>
+        </div>
     );
 }
 // TODO: parse appearances for sonic
