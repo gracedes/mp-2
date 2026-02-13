@@ -4,7 +4,8 @@
  //   - add ability to search
 
 import {useEffect, useState} from "react";
- import type {Character} from "../interfaces/Characters.ts";
+import type {Character} from "../interfaces/Characters.ts";
+import PuyoImage from "../components/PuyoImage.tsx";
 
 export default function PuyoNexusContent(){
     const [characters, setCharacters] = useState<Character[]>([])
@@ -25,6 +26,7 @@ export default function PuyoNexusContent(){
                     <div>
                         <h1>{char.name}</h1>
                         <h2>({char.nameJP.unicode})</h2>
+                        <PuyoImage char={char}/>
                         <p>Gender: {char.gender}</p>
                         <p>Birthday: {char.birthday}</p>
                         <p>First Appearance: {char.firstAppear}</p>
