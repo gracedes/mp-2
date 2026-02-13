@@ -1,3 +1,7 @@
+ // TODO ideas
+ //   - drop-down to filter by first/last game using react hooks
+ //   - look into custom hook for array manipulation
+
 import styled from "styled-components";
 import type {Character} from "../interfaces/Characters.ts";
 
@@ -18,6 +22,7 @@ const SingleCharDiv=styled.div<{status: string}>`
     background-color: ${(props)=>(props.status === "Female" ? 'lightpink' : 'lightblue')};
     color: ${(props) => (props.status !== "Female" ? 'black' : 'white')};
     border: 3px darkred solid;
+    border-radius: 15px;
     font: italic small-caps bold calc(2px + 1vw) Papyrus, fantasy;
     text-align: center;
 `;
@@ -28,10 +33,10 @@ export default function PuyoNexus(props : { data:Character[] } ){
             {
                 props.data.map((char: Character) =>
                     <SingleCharDiv key={char.id} status={char.gender}>
-                        <h1>{char.name} ({char.nameJP.unicode})</h1>
+                        <h1>{char.name}</h1>
+                        <h2>({char.nameJP.unicode})</h2>
                         <p>Gender: {char.gender}</p>
                         <p>Birthday: {char.birthday}</p>
-                        <p>About: {char.description}</p>
                         <p>First Appearance: {char.firstAppear}</p>
                         <p>Last Appearance: {char.lastAppear}</p>
                     </SingleCharDiv>
@@ -40,3 +45,4 @@ export default function PuyoNexus(props : { data:Character[] } ){
         </AllCharsDiv>
     );
 }
+// TODO: parse appearances for sonic
