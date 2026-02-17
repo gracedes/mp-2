@@ -1,3 +1,5 @@
+// TODO: revisit this file later, having same-origin issue at the moment so might have to scrap this
+
 import styled from "styled-components";
 import type {Character} from "../interfaces/Characters.ts";
 
