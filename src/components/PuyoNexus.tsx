@@ -6,6 +6,31 @@
 import {useEffect, useState} from "react";
 import type {Character} from "../interfaces/Characters.ts";
 // import PuyoImage from "../components/PuyoImage.tsx";
+import {Games} from "../interfaces/Games.ts";
+ import styled from "styled-components";
+
+ const CharsContainer = styled.div`
+     display: flex;
+     flex-flow: row wrap;
+     justify-content: space-evenly;
+     background-color: dimgrey;
+ `;
+
+ const CharDiv=styled.div<{firstGame: string, lastGame: string}>`
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+    max-width: 30%;
+    padding: 2%;
+    margin: auto;
+    border: 3px darkgray solid;
+    border-radius: 15px;
+    font: italic small-caps bold calc(2px + 1vw) Arial;
+    text-align: center;
+     
+     background-color: lightcoral;
+     background-color: ${(props) => (`rgba(98, 180, 255, ${(Games[props.lastGame] - Games[props.firstGame]) / (2026 - 1989)})`)};
+     `;
 
 export default function PuyoNexusContent(){
     const [characters, setCharacters] = useState<Character[]>([])
@@ -20,20 +45,20 @@ export default function PuyoNexusContent(){
     }, [characters.length]);
 
     return (
-        <div>
+        <CharsContainer>
             {
                 characters.map((char: Character) =>
-                    <div>
+                    <CharDiv firstGame={char.firstAppear !== undefined ? char.firstAppear.split(",")[0] : char.firstAppear} lastGame={char.lastAppear !== undefined ? char.lastAppear.split(",")[0] : char.lastAppear}>
                         <h1>{char.name}</h1>
                         <h2>({char.nameJP.unicode})</h2>
                         <p>Gender: {char.gender}</p>
                         <p>Birthday: {char.birthday}</p>
-                        <p>First Appearance: {char.firstAppear}</p>
-                        <p>Last Appearance: {char.lastAppear}</p>
-                    </div>
+                        <p>First Appearance: {char.firstAppear !== undefined ? char.firstAppear.split(",")[0] : char.firstAppear}</p>
+                        <p>Last Appearance: {char.lastAppear !== undefined ? char.lastAppear.split(",")[0] : char.lastAppear}</p>
+                    </CharDiv>
                 )
             }
-        </div>
+        </CharsContainer>
     );
 }
 // TODO: parse appearances for sonic
