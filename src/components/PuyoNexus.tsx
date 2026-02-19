@@ -13,6 +13,7 @@ import {Games} from "../interfaces/Games.ts";
      display: flex;
      flex-flow: row wrap;
      justify-content: space-evenly;
+     width: 100vw;
  `;
 
  const CharDiv=styled.div<{firstGame: string, lastGame: string}>`
@@ -57,23 +58,26 @@ import {Games} from "../interfaces/Games.ts";
  `;
 
 export default function PuyoNexusContent(){
+    const [searchText, setSearchText] = useState("");
     const [characters, setCharacters] = useState<Character[]>([])
+
+    // TODO: add catch for no characters
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch("https://deltadex7-puyodb-api-deno-9thxn4rqxy9g.deno.dev/api/v1/characters");
+            const res = await fetch(`https://deltadex7-puyodb-api-deno-9thxn4rqxy9g.deno.dev/api/v1/characters/${searchText}`);
             const rawData = await res.json();
             setCharacters(rawData.data);
         }
         fetchData().then(()=>console.log("okay")).catch((e) => console.log(e));
-    }, [characters.length]);
+    }, [characters.length, searchText]);
 
     // TODO: input label
     return (
         <>
             <SearchDiv>
                 <h1>Puyo Puyo Characters</h1>
-                <input type={"text"} id={"charSearch"} placeholder={"Search..."}/>
+                <input type={"text"} id={"charSearch"} placeholder={"Search..."} onChange={(e)=>setSearchText(String(e.target.value))}/>
             </SearchDiv>
             <CharsContainer>
                 {
