@@ -57,6 +57,12 @@ import {Games} from "../interfaces/Games.ts";
      }
  `;
 
+ const MsgDiv = styled.div`
+     width: 100vw;
+     text-align: center;
+     font: italic small-caps bold calc(2px + 1vw) Arial;
+ `;
+
 export default function PuyoNexusContent(){
     const [searchText, setSearchText] = useState("");
     const [characters, setCharacters] = useState<Character[]>([])
@@ -70,10 +76,30 @@ export default function PuyoNexusContent(){
             setCharacters(rawData.data);
         }
         fetchData().then(()=>console.log("okay")).catch((e) => console.log(e));
-    }, [characters.length, searchText]);
+    }, [characters, searchText]);
 
+    if (!characters) {
+        if (searchText === "") return (
+            <>
+                <SearchDiv>
+                    <h1>Puyo Puyo Characters</h1>
+                    <input type={"text"} id={"charSearch"} placeholder={"Search..."} onChange={(e)=>setSearchText(String(e.target.value))}/>
+                </SearchDiv>
+                <MsgDiv><h1>Loading...</h1></MsgDiv>
+            </>
+        )
+        else return (
+            <>
+                <SearchDiv>
+                    <h1>Puyo Puyo Characters</h1>
+                    <input type={"text"} id={"charSearch"} placeholder={"Search..."} onChange={(e)=>setSearchText(String(e.target.value))}/>
+                </SearchDiv>
+                <MsgDiv><h1>No characters match your search! :(</h1></MsgDiv>
+            </>
+        )
+    }
     // TODO: input label
-    return (
+    else return (
         <>
             <SearchDiv>
                 <h1>Puyo Puyo Characters</h1>
