@@ -1,4 +1,4 @@
-export const Games = {
+export const Games : { [key: string]: number } = {
     // puyo puyo series
     "Puyo Puyo (1991)": 1991,
     "Puyo Puyo (1992)": 1992,
