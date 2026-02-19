@@ -78,7 +78,7 @@ export default function PuyoNexusContent(){
             <CharsContainer>
                 {
                     characters.map((char: Character) =>
-                        <CharDiv firstGame={char.firstAppear !== undefined ? char.firstAppear.split(",")[0] : char.firstAppear} lastGame={char.lastAppear !== undefined ? char.lastAppear.split(",")[0] : char.lastAppear}>
+                        <CharDiv firstGame={char.firstAppear !== undefined ? char.firstAppear.split(",")[0] : ""} lastGame={char.lastAppear !== undefined ? char.lastAppear.split(",")[0] : ""}>
                             <h1>{char.name}</h1>
                             <h2>({char.nameJP.unicode})</h2>
                             <p>Gender: {char.gender}</p>

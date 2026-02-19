@@ -5,7 +5,7 @@ export interface Character {
     gender: string;
     alias: string[];
     description: string;
-    birthday?: string;           // TODO: look into optional values
+    birthday?: string;
     firstAppear?: string;
     lastAppear?: string;
 }
