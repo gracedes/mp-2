@@ -13,24 +13,30 @@ import {Games} from "../interfaces/Games.ts";
      display: flex;
      flex-flow: row wrap;
      justify-content: space-evenly;
-     background-color: dimgrey;
  `;
 
  const CharDiv=styled.div<{firstGame: string, lastGame: string}>`
     display: flex;
     flex-direction: column;   
     justify-content: center;
-    max-width: 30%;
+    width: 30%;
     padding: 2%;
-    margin: auto;
-    border: 3px darkgray solid;
+    margin: 1% auto;
+    border-width: 3px;
+    border-style: solid;
     border-radius: 15px;
     font: italic small-caps bold calc(2px + 1vw) Arial;
     text-align: center;
      
-     background-color: lightcoral;
-     background-color: ${(props) => (`rgba(98, 180, 255, ${(Games[props.lastGame] - Games[props.firstGame]) / (2026 - 1989)})`)};
-     `;
+       // TODO: change later
+     border-color: rgb(98, 180, 225);
+     box-shadow: 0 0 10px rgb(98, 180, 225);
+     background-color: ${(props) => (`rgba(98, 180, 255, ${(Games[props.lastGame] - Games[props.firstGame]) / (1.75 * (2026 - 1989))})`)};
+     
+    &:hover {
+        box-shadow: 0 0 15px rgb(98, 180, 225);
+    }
+ `;
 
 export default function PuyoNexusContent(){
     const [characters, setCharacters] = useState<Character[]>([])
@@ -52,9 +58,9 @@ export default function PuyoNexusContent(){
                         <h1>{char.name}</h1>
                         <h2>({char.nameJP.unicode})</h2>
                         <p>Gender: {char.gender}</p>
-                        <p>Birthday: {char.birthday}</p>
-                        <p>First Appearance: {char.firstAppear !== undefined ? char.firstAppear.split(",")[0] : char.firstAppear}</p>
-                        <p>Last Appearance: {char.lastAppear !== undefined ? char.lastAppear.split(",")[0] : char.lastAppear}</p>
+                        <p>{char.birthday !== undefined ? `Birthday: ${char.birthday}` : ``}</p>
+                        <p>{char.firstAppear !== undefined ? `First Appearance: ${char.firstAppear.split(",")[0]}` : ``}</p>
+                        <p>{char.lastAppear !== undefined ? `Last Appearance: ${char.lastAppear.split(",")[0]}` : ``}</p>
                     </CharDiv>
                 )
             }

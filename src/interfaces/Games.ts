@@ -53,6 +53,7 @@ export const Games = {
         "Madou Monogatari II": 1994,
         "Madou Monogatari III": 1994,
             "Madou Monogatari 3": 1994,
+    "Madou Monogatari: Michikusa Ibun": 1994,
     // spin-offs
     "Disc Station #7": 1995,
     "Cranky Food Friends": 2015,

@@ -3,9 +3,9 @@ export interface Character {
     name: string;
     nameJP: { unicode: string, latin: string };
     gender: string;
-    //alias: array;
+    alias: string[];
     description: string;
     birthday?: string;           // TODO: look into optional values
-    firstAppear: string;
-    lastAppear: string;
+    firstAppear?: string;
+    lastAppear?: string;
 }
