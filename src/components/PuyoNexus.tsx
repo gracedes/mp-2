@@ -1,11 +1,5 @@
- // TODO ideas
- //   - drop-down to filter by first/last game using react hooks
- //   - look into custom hook for array manipulation
- //   - add ability to search
-
 import {useEffect, useState} from "react";
 import type {Character} from "../interfaces/Characters.ts";
-// import PuyoImage from "../components/PuyoImage.tsx";
 import {Games} from "../interfaces/Games.ts";
  import styled from "styled-components";
 
@@ -28,7 +22,6 @@ import {Games} from "../interfaces/Games.ts";
     font: italic small-caps bold calc(2px + 1vw) Arial;
     text-align: center;
      
-       // TODO: change later
      box-shadow: 0 0 10px rgb(98, 180, 225);
      background-color: ${(props) => (`rgba(98, 180, 255, ${(Games[props.lastGame] - Games[props.firstGame]) / (1.75 * (2026 - 1989))})`)};
      

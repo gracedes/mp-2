@@ -1,3 +1,4 @@
+// interface for the attributes of each character
 export interface Character {
     id: string;
     name: string;
@@ -5,6 +6,7 @@ export interface Character {
     gender: string;
     alias: string[];
     description: string;
+    // optional attributes not provided for all characters:
     birthday?: string;
     firstAppear?: string;
     lastAppear?: string;

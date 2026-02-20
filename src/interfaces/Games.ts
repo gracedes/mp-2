@@ -1,3 +1,4 @@
+// this is just a const to store the release year of each possible game for the firstAppear and lastAppear attributes
 export const Games : { [key: string]: number } = {
     // puyo puyo series
     "Puyo Puyo (1991)": 1991,

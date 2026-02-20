@@ -1,4 +1,9 @@
-// TODO: revisit this file later, having same-origin issue at the moment so might have to scrap this
+// NOTE: this is code I wrote when I was trying to fetch images directly from the wiki
+// page of each character since the API does not supply image links and the wiki does
+// not have a consistent image file name format which I could parse the char.id into,
+// but I was ultimately not able to scrape them manually due to CORS limitations,
+// so I gave up on using images but I don't want to delete this code because it
+// took me a while and I would feel bad deleting it all :(
 
 import styled from "styled-components";
 import type {Character} from "../interfaces/Characters.ts";
@@ -9,8 +14,6 @@ const CharacterImageDiv = styled.div`
     width: 400px;
     background-color: lightblue;
 `;
-
-// TODO: implement caching to decrease loadtime
 
 export default function ArtworkPreview({char}:{char:Character}){
     async function fetchData() {
